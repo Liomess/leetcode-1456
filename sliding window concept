@@ -1,0 +1,22 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        v={"a":1,"e":1,"i":1,"o":1,"u":1}
+        n=len(s)
+        ans=-1*float('inf')
+        count=0
+        ws=0
+        we=0
+        while we<n:
+            if ws>we:
+                we=ws
+            if we-ws+1<=k:
+                if s[we] in v:
+                    count+=1
+                we+=1
+            else:
+                ans=max(ans,count)
+                if s[ws] in v:
+                    count-=1
+                ws+=1
+        ans=max(ans,count)
+        return ans 
